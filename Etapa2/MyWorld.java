@@ -46,7 +46,7 @@ public class MyWorld {
 				for (PhysicsElement e: elements)   // compute each element next state based on current global state  
 						e.computeNextState(delta_t, this); // compute each element next state based on current global state
 				for (PhysicsElement e: elements)  // for each element update its state. 
-						e.updateState();     // update its state
+						e.updateState();     // update its state  
 			}
 			printState(t);
 		}
