@@ -5,10 +5,10 @@ public class Spring extends PhysicsElement {
 	protected final double restLength;
 	private final double stiffness;
 	protected Ball a_end, b_end;
-/*
-	private double currentLength;
-	private double delta_x;
-*/
+
+	private double currentLength = 0;
+	private double delta_x = 0;
+
 	private Spring() {
 		// Nobody can create a block without state
 		this(0, 0);
@@ -67,9 +67,6 @@ public class Spring extends PhysicsElement {
 		if ((ball != a_end) && (ball != b_end))
 			return force;
 
-		double currentLength = Math.abs(b_end.getPosition() - a_end.getPosition());
-		double delta_x = Math.abs(currentLength - restLength);
-
 		if (currentLength > restLength) {
 			if (ball == a_end)
 				force = stiffness * delta_x;
@@ -88,6 +85,8 @@ public class Spring extends PhysicsElement {
 	}
 	
 	public void computeNextState(double delta_t, MyWorld w) {
+		currentLength = Math.abs(b_end.getPosition() - a_end.getPosition());
+		delta_x = Math.abs(currentLength - restLength);
 	}
 	
 	public void updateState() {
@@ -102,7 +101,11 @@ public class Spring extends PhysicsElement {
 	}
 	
 	public String getState() {
-		// To be coded by you
-		return "";
+		if (currentLength < restLength)
+			return "Comprimido";
+		else if (currentLength == restLength)
+			return "Reposo";
+		else
+			return "Estirado";
 	}
 }

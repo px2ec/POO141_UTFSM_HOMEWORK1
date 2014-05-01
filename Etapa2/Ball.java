@@ -47,7 +47,10 @@ public class Ball extends PhysicsElement {
 		return extForce;
 	}
 	public String getState() {
-		return "";
+		if (speed_t != 0)
+			return "Moviendose";
+
+		return "Detenida";
 	}
 	public double getPosition() {
 		return pos_t;
