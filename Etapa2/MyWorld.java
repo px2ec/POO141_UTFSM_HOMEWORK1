@@ -3,13 +3,14 @@ import java.io.*;
 
 public class MyWorld {
 	private PrintStream out;
+	// Array to hold everything in my world
+	private ArrayList<PhysicsElement> elements;
 
-	private ArrayList<PhysicsElement> elements;  // array to hold everything in my world.
-
-	public MyWorld(){
-		this(System.out);  // delta_t= 0.1[ms] and refreshPeriod=200 [ms]
+	public MyWorld() {
+		// delta_t= 0.1[ms] and refreshPeriod=200 [ms]
+		this(System.out);
 	}
-	public MyWorld(PrintStream output){
+	public MyWorld(PrintStream output) {
 		out = output;
 		elements = new ArrayList<PhysicsElement>();     
 	}
@@ -18,36 +19,45 @@ public class MyWorld {
 		elements.add(e);
 	}
 
-	public void printStateDescription(){
-		String s ="Time\t";
+	public void printStateDescription() {
+		String s = "Time";
+		
 		for (PhysicsElement e: elements)
-		s+=e.getDescription() + "\t";
+			s += ", " + e.getDescription();
+		
 		out.println(s);
 	}
 
-	public void printState(double t){
-		//  to be coded by you		
+	public void printState(double t) {
 		String s = "";
+		
 		for (PhysicsElement e: elements) {
 			if (e instanceof Spring) {
-				s += ((Spring)e).getAendPosition() + ";";
-				s += ((Spring)e).getBendPosition() + ";";
+				s += ", " + ((Spring)e).getAendPosition();
+				s += ", " + ((Spring)e).getBendPosition();
 			}
 		}
-		out.println(t + ";" + s);
+
+		out.println(t + s);
 	}
 
-	public void simulate (double delta_t, double endTime, double samplingTime) {  // simulate passing time
-		double t=0;
+	// Simulate passing time
+	public void simulate(double delta_t, double endTime, double samplingTime) {
+		double t = 0;
+		
 		printStateDescription();
 		printState(t);
-		while (t<endTime) {
-			for(double nextStop=t+samplingTime; t<nextStop; t+=delta_t) {
-				for (PhysicsElement e: elements)   // compute each element next state based on current global state  
-						e.computeNextState(delta_t, this); // compute each element next state based on current global state
-				for (PhysicsElement e: elements)  // for each element update its state. 
-						e.updateState();     // update its state  
+
+		while (t < endTime) {
+			for (double nextStop = t + samplingTime; t < nextStop; t += delta_t) {
+				// Compute each element's next state based on current global state
+				for (PhysicsElement e: elements)
+					e.computeNextState(delta_t, this);
+				// For each element, update its state
+				for (PhysicsElement e: elements)
+					e.updateState();
 			}
+
 			printState(t);
 		}
 	}   
@@ -57,9 +67,11 @@ public class MyWorld {
 			if (e instanceof Ball) {
 				Ball b = (Ball)e;
 				if (b.getDescription().compareTo(me.getDescription()) != 0)
-					if (b.collide(me)) return b;
+					if (b.collide(me))
+						return b;
 			}
 		}
+
 		return null;
 	}  
 } 
