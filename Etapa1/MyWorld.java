@@ -4,7 +4,7 @@ import java.lang.Math.*;
 
 public class MyWorld {
 	private PrintStream out;
-	// Array to hold everything in my world.
+	// Array to hold everything in my world
 	private ArrayList<PhysicsElement> elements;
 
 	public MyWorld() {
@@ -25,7 +25,7 @@ public class MyWorld {
 		String s = "Time";
 		
 		for (PhysicsElement e: elements)
-			s += "," + e.getDescription();
+			s += ", " + e.getDescription();
 
 		out.println(s);
 	}
@@ -34,7 +34,7 @@ public class MyWorld {
 		String s = "";
 		
 		for (PhysicsElement e: elements) {
-			s += "," + ((Ball)e).getPosition();
+			s += ", " + ((Ball)e).getPosition();
 		}
 
 		out.println(t + s);
@@ -48,11 +48,11 @@ public class MyWorld {
 		printState(t);
 		
 		while (t < endTime) {
-			for(double nextStop = t + samplingTime; t < nextStop; t += delta_t) {
+			for (double nextStop = t + samplingTime; t < nextStop; t += delta_t) {
 				// Compute each element's next state based on current global state
 				for (PhysicsElement e: elements)
 					e.computeNextState(delta_t, this);
-				// For each element, update its state.
+				// For each element, update its state
 				for (PhysicsElement e: elements)
 					e.updateState();
 			}

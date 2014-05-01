@@ -2,13 +2,13 @@ import java.util.*;
 import java.lang.Math.*;
 
 public class Ball extends PhysicsElement {
-	private static int id = 0;       // Ball identification number
+	private static int id = 0;         // Ball identification number
 	private final double mass;
 	private final double radius;
-	private double pos_t;            // Current position at time t
-	private double pos_tPlusDelta;   // Next position in delta time in future
-	private double speed_t;          // Speed at time t
-	private double speed_tPlusDelta; // Speed in delta time in future
+	private double pos_t;              // Current position at time t
+	private double pos_tPlusDelta;     // Next position in delta time in future
+	private double speed_t;            // Speed at time t
+	private double speed_tPlusDelta;   // Speed in delta time in future
 
 	private boolean in_collision = false;
 

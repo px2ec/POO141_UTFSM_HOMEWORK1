@@ -11,7 +11,7 @@ public class PhysicsLab {
 		MyWorld world = new MyWorld(System.out);
 
 		double mass = 1.0;      //  1.0  [kg]
-		double speed = 0.5;     //  0.5 [m/s]
+		double speed = 0.5;     //  0.5  [m/s]
 		double radius = 0.1;    // 10.0  [cm]
 		double position = 1.0;  //  1.0  [m]
 
@@ -20,6 +20,6 @@ public class PhysicsLab {
 
 		world.addElement(b0);
 		world.addElement(b1);
-		world.simulate(deltaTime, endTime, samplingTime); // Delta time[s], total simulation time [s].
+		world.simulate(deltaTime, endTime, samplingTime); // Delta time[s], total simulation time [s]
 	}
 }

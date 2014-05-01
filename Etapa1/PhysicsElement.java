@@ -5,6 +5,7 @@ public abstract class PhysicsElement {
 	protected PhysicsElement(int id) {
 		myId = id;
 	}
+	
 	protected int getId() {
 		return myId;
 	}
@@ -13,5 +14,4 @@ public abstract class PhysicsElement {
 	public abstract String getState();
 	public abstract void computeNextState(double delta_t, MyWorld world);
 	public abstract void updateState();
-
 }
