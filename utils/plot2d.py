@@ -21,8 +21,8 @@ def main(files):
     for f in files:
         plot_values  = csv_parse(f)
         time = [values[0] for values in plot_values]
-        ball1 = [values[1] for values in plot_values]
-        ball2 = [values[2] for values in plot_values]
+        ball1 = [values[-2] for values in plot_values]
+        ball2 = [values[-1] for values in plot_values]
         
         plt.grid(True)
         plt.title('Ball 1 (green) | Ball 2 (red)')
