@@ -1,4 +1,5 @@
 interface SpringAttachable {
-  void attachSpring(Spring s);
-  double getPosition();
+	void attachSpring(Spring s);
+	String getDescription();
+	double getPosition();
 }
