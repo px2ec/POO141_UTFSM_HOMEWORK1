@@ -68,7 +68,7 @@ public class Ball extends PhysicsElement {
 		if ((b = world.findCollidingBall(this)) != null && !in_collision) {
 			speed_tPlusDelta  = (speed_t * (this.mass - b.getMass()) + 2 * b.getMass() * b.getSpeed());
 			speed_tPlusDelta /= (this.mass + b.getMass());
-			pos_tPlusDelta = pos_t;
+			pos_tPlusDelta = pos_t + speed_tPlusDelta * delta_t;
 
 			in_collision = true;
 		} else {
