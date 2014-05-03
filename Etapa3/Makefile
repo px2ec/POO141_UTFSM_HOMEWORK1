@@ -42,5 +42,5 @@ clean:
 test:
 	make clean
 	make
-	$(JVM) PhysicsLab 0.1 40 0.01 > resultados.csv
+	$(JVM) PhysicsLab 0.01 40 0.01 > resultados.csv
 	python2 ../utils/plot2d.py resultados.csv
