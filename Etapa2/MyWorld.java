@@ -12,7 +12,7 @@ public class MyWorld {
 	}
 	public MyWorld(PrintStream output) {
 		out = output;
-		elements = new ArrayList<PhysicsElement>();     
+		elements = new ArrayList<PhysicsElement>();
 	}
 
 	public void addElement(PhysicsElement e) {
@@ -60,9 +60,9 @@ public class MyWorld {
 
 			printState(t);
 		}
-	}   
+	}
 
-	public Ball findCollidingBall(Ball me) {		
+	public Ball findCollidingBall(Ball me) {
 		for (PhysicsElement e: elements) {
 			if (e instanceof Ball) {
 				Ball b = (Ball)e;
@@ -73,5 +73,5 @@ public class MyWorld {
 		}
 
 		return null;
-	}  
-} 
+	}
+}
