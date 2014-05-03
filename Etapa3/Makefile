@@ -39,8 +39,12 @@ run: $(MAIN).class
 clean:
 	rm -rf *.class
 
+mrproper:
+	make clean
+	rm -rf res*.csv res*.png
+
 test:
 	make clean
 	make
-	$(JVM) PhysicsLab 0.01 40 0.01 > resultados.csv
-	python2 ../utils/plot2d.py resultados.csv
+	$(JVM) PhysicsLab 0.01 40 0.01 > resultados_e3.csv
+	python2 ../utils/plot2d.py -s resultados_e3.csv

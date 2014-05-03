@@ -17,7 +17,7 @@ def csv_parse(filename):
             retlist.append(map(float, row))
     return retlist
 
-def main(files):
+def main(files, show=False):
     for f in files:
         plot_values  = csv_parse(f)
         time = [values[0] for values in plot_values]
@@ -31,12 +31,18 @@ def main(files):
         plt.ylabel('position [m]')
         plt.xlabel('time [s]')
 
-        plt.show()
+        plt.savefig(f.replace('.csv', '.png'))
+        if show:
+            plt.show()
     return 0
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Creates 2-dimensional plots from csv files')
     parser.add_argument('files', metavar='FILE', type=str, nargs='+')
+    parser.add_argument('-s', '--show', action='store_true')
     args = parser.parse_args()
-    retval = main(args.files)
+    if args.show:
+        retval = main(args.files, show=True)
+    else:
+        retval = main(args.files)
     sys.exit(retval)
