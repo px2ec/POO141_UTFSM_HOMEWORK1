@@ -1,13 +1,52 @@
+import java.util.Scanner;
+
 public class PhysicsLab {
 	public static void main(String[] args) {
+		double deltaTime = 0;    // [s]
+		double endTime = 0;      // [s]
+		double samplingTime = 0; // [s]
+
 		if (args.length != 3)  {
-			System.out.println("usage: java PhysicsLab <delta_time[s]> <end_time[s]> <sampling_time[s]>");
-			System.exit(-1);
+			Scanner scan = new Scanner(System.in);
+			boolean bError = true;
+			do {
+				try {
+					System.out.print("Ingrese delta: ");
+					deltaTime = scan.nextDouble();
+					bError = false;
+				} catch (Exception e) {
+					System.out.println("Intente nuevamente");
+					scan.next();
+				}
+			} while (bError);
+			bError = true;
+			do {
+				try {
+					System.out.print("Ingrese tiempo a simular: ");
+					endTime = scan.nextDouble();
+					bError = false;
+				} catch (Exception e) {
+					System.out.println("Intente nuevamente");
+					scan.next();
+				}
+			} while (bError);
+			bError = true;
+			do {
+				try {
+					System.out.print("Ingrese tiempo de muestreo: ");
+					samplingTime = scan.nextDouble();
+					bError = false;
+				} catch (Exception e) {
+					System.out.println("Intente nuevamente");
+					scan.next();
+				}
+			} while (bError);
+		} else {
+			deltaTime = Double.parseDouble(args[0]);
+			endTime = Double.parseDouble(args[1]);
+			samplingTime = Double.parseDouble(args[2]);
 		}
 
-		double deltaTime = Double.parseDouble(args[0]);    // [s]
-		double endTime = Double.parseDouble(args[1]);      // [s]
-		double samplingTime = Double.parseDouble(args[2]); // [s]
 		MyWorld world = new MyWorld(System.out);
 
 		double mass = 1.0;      //  1.0 [kg]
