@@ -39,8 +39,9 @@ public class Block extends PhysicsElement implements SpringAttachable {
 	public double getSpeed() {
 		return speed_t;
 	}
-	private double getNetForce() {
+	private double getNetForce(MyWorld world) {
 		double extForce = 0;
+		double gravity = world.getGravity();
 		
 		for (Spring s: springs) {
 			extForce += s.getForce(this);
@@ -63,7 +64,7 @@ public class Block extends PhysicsElement implements SpringAttachable {
 
 	public void computeNextState(double delta_t, MyWorld world) {
 		Ball b;
-		a_t = getNetForce() / mass;
+		a_t = getNetForce(world) / mass;
 
 		/* Elastic collision */
 		if ((b = world.findCollidingBall(this)) != null && !in_collision) {

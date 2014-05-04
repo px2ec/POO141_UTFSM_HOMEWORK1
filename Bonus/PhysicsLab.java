@@ -50,7 +50,8 @@ public class PhysicsLab {
 		double mass = 2.0;      //  2.0 [kg]
 		double speed = 0.0;     //  0.0 [m/s]
 		double radius = 0.1;    // 10.0 [cm]
-		double position = 0.0;  //  0.0 [m] 
+		double position = 0.0;  //  0.0 [m]
+		double gravity = -9.8;   //  9.8 [m/s^2]
 		
 		Ball bola0 = new Ball(mass, radius, 1.5, 1.0);
 		Ball bola1 = new Ball(mass, radius, 2.5, 0.0);

@@ -9,8 +9,14 @@ public class MyWorld {
 
 	public MyWorld() {
 		// delta_t= 0.1[ms] and refreshPeriod=200 [ms]
-		this(System.out);
+		this(System.out, -9.8);
 	}
+	
+	public MyWorld(PrintStream output) {
+		out = output;
+		elements = new ArrayList<PhysicsElement>();
+	}
+	
 	public MyWorld(PrintStream output, double gravity) {
 		this.gravity = gravity;
 		out = output;
@@ -65,6 +71,10 @@ public class MyWorld {
 
 			printState(t);
 		}
+	}
+
+	public double getGravity(){
+		return gravity;
 	}
 
 	public Ball findCollidingBall(Ball me) {
