@@ -1,8 +1,8 @@
 import java.lang.Math.*;
 
 public class Spring extends PhysicsElement {
-	private static int id = 0;  // Spring identification
-	protected final double restLength;
+	private static int id = 0;            // Spring identification
+	protected final double restLength;    // (spanish) Largo natural
 	private final double stiffness;
 	protected SpringAttachable a_end, b_end;
 
@@ -63,32 +63,25 @@ public class Spring extends PhysicsElement {
 
 	public double getForce(Ball ball) {
 		double force = 0;
-		
 		if ((a_end == null) || (b_end == null))
 			return force;
 		if ((ball != a_end) && (ball != b_end))
 			return force;
-
-		if (currentLength > restLength) {
-			if (ball == a_end)
-				force = stiffness * delta_x;
-			else if (ball == b_end)
-				force = stiffness * delta_x * -1;
-		} else if (currentLength < restLength) {
-			if (ball == a_end)
-				force = stiffness * delta_x * - 1;
-			else if (ball == b_end)
-				force = stiffness * delta_x;
-		} else {
+		
+		if (ball == a_end)
+			force = stiffness * delta_x;
+		else if (ball == b_end)
+			force = - stiffness * delta_x;
+		else 
 			force = 0;
-		}
-
+			
 		return force;
 	}
 	
 	public void computeNextState(double delta_t, MyWorld w) {
-		currentLength = Math.abs(b_end.getPosition() - a_end.getPosition());
-		delta_x = Math.abs(currentLength - restLength);
+		//currentLength = Math.abs(b_end.getPosition() - a_end.getPosition());
+		currentLength = b_end.getPosition() - a_end.getPosition();
+		delta_x = currentLength - restLength;
 	}
 	
 	public void updateState() {
