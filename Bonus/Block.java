@@ -42,7 +42,12 @@ public class Block extends PhysicsElement implements SpringAttachable {
 	private double getNetForce(MyWorld world) {
 		double extForce = 0;
 		double gravity = world.getGravity();
-		
+		//add kinetic friction force
+		extForce += gravity * mass * cof * (int) Math.signum(speed_t);
+		//add static friction force
+		if ((int) Math.signum(speed_t) == 0){
+			extForce += gravity * mass * cof * (int) Math.signum(a_t);
+		}
 		for (Spring s: springs) {
 			extForce += s.getForce(this);
 		}
@@ -65,7 +70,7 @@ public class Block extends PhysicsElement implements SpringAttachable {
 	public void computeNextState(double delta_t, MyWorld world) {
 		Ball b;
 		a_t = getNetForce(world) / mass;
-
+		
 		/* Elastic collision */
 		if ((b = world.findCollidingBall(this)) != null && !in_collision) {
 			speed_tPlusDelta  = speed_t * (this.mass - b.getMass()) + 2 * b.getMass() * b.getSpeed();
