@@ -55,7 +55,7 @@ public class PhysicsLab {
 		double position = 0.0;  //  0.0 [m] 
 		
 		Ball bola0 = new Ball(mass, radius, 1.5, 1.0);
-		Ball bola1 = new Ball(mass, radius, 2.5, 0.0);
+		Ball bola1 = new Ball(mass, radius, 100, 0.0);
 		Spring resorte = new Spring(1.0, 1.0);
 		FixedHook gancho = new FixedHook(0.0);
 		
