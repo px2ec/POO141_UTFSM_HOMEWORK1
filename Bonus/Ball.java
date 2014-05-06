@@ -1,11 +1,10 @@
 import java.util.*;
 import java.lang.Math.*;
 
-public class Block extends PhysicsElement implements SpringAttachable {
-	private static int id = 0;         // Block identification number
+public class Ball extends PhysicsElement implements SpringAttachable {
+	private static int id = 0;         // Ball identification number
 	private final double mass;
 	private final double radius;
-	private final double cof;          // Coefficient of friction. Used as static and kinetic friction.
 	private double pos_t;              // Current position at time t
 	private double pos_tPlusDelta;     // Next position in delta time in future
 	private double speed_t;            // Speed at time t
@@ -16,15 +15,14 @@ public class Block extends PhysicsElement implements SpringAttachable {
 
 	private boolean in_collision = false;
 
-	private Block() {
+	private Ball() {
 		// Nobody can create a block without state
-		this(1.0, 0.1, 0, 0, 0);
+		this(1.0, 0.1, 0, 0);
 	}
-	public Block(double mass, double radius, double position, double speed, double cof) {
+	public Ball(double mass, double radius, double position, double speed) {
 		super(id++);
 		pos_t = position;
 		speed_t = speed;
-		this.cof = cof;
 		this.mass = mass;
 		this.radius = radius;
 
@@ -39,19 +37,13 @@ public class Block extends PhysicsElement implements SpringAttachable {
 	public double getSpeed() {
 		return speed_t;
 	}
-	private double getNetForce(MyWorld world) {
+	private double getNetForce() {
 		double extForce = 0;
-		double gravity = world.getGravity();
-		//add kinetic friction force
-		extForce += gravity * mass * cof * (int) Math.signum(speed_t);
-		//add static friction force
-		if ((int) Math.signum(speed_t) == 0){
-			extForce += gravity * mass * cof * (int) Math.signum(a_t);
-		}
+		
 		for (Spring s: springs) {
 			extForce += s.getForce(this);
 		}
-		
+
 		return extForce;
 	}
 	public String getState() {
@@ -69,8 +61,8 @@ public class Block extends PhysicsElement implements SpringAttachable {
 
 	public void computeNextState(double delta_t, MyWorld world) {
 		SpringAttachable b;
-		a_t = getNetForce(world) / mass;
-		
+		a_t = getNetForce() / mass;
+
 		/* Elastic collision */
 		if ((b = world.findCollidingBall(this)) != null && !in_collision) {
 			speed_tPlusDelta  = speed_t * (this.mass - b.getMass()) + 2 * b.getMass() * b.getSpeed();
@@ -102,7 +94,7 @@ public class Block extends PhysicsElement implements SpringAttachable {
 	}
 
 	public String getDescription() {
-		return "Block_" + super.getId();
+		return "Ball_" + super.getId();
 	}
 
 	public void attachSpring(Spring spring) {

@@ -5,15 +5,23 @@ JFLAGS = -g
 
 CLASSES = \
 	Ball.class \
+	Block.class \
 	MyWorld.class \
 	PhysicsLab.class \
-	PhysicsElement.class
+	PhysicsElement.class \
+	Spring.class \
+	FixedHook.class \
+	SpringAttachable.class
 
 SOURCES = \
 	Ball.java \
+	Block.java \
 	MyWorld.java \
 	PhysicsLab.java \
-	PhysicsElement.java
+	PhysicsElement.java \
+	Spring.java \
+	FixedHook.java \
+	SpringAttachable.java
 
 MAIN = PhysicsLab
 
@@ -40,5 +48,5 @@ mrproper:
 test:
 	make clean
 	make
-	$(JVM) PhysicsLab 0.01 20 0.01 > resultados_e1.csv
-	python2 plot2d.py -s resultados_e1.csv
+	$(JVM) PhysicsLab 0.01 40 0.01 > resultados_B.csv
+	python2 plot2d.py -s resultados_B.csv

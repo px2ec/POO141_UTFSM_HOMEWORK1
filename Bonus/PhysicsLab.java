@@ -52,9 +52,10 @@ public class PhysicsLab {
 		double radius = 0.1;    // 10.0 [cm]
 		double position = 0.0;  //  0.0 [m]
 		double gravity = -9.8;   //  9.8 [m/s^2]
+		double cof = 0.004;
 		
-		Ball bola0 = new Ball(mass, radius, 1.5, 1.0);
-		Ball bola1 = new Ball(mass, radius, 2.5, 0.0);
+		Block bola0 = new Block(mass, radius, 1.5, 1.0, cof);
+		Ball bola1 = new Ball(mass, radius, 2.4, 0.0);
 		Spring resorte = new Spring(1.0, 1.0);
 		FixedHook gancho = new FixedHook(0.0);
 		

@@ -15,6 +15,7 @@ public class MyWorld {
 	public MyWorld(PrintStream output) {
 		out = output;
 		elements = new ArrayList<PhysicsElement>();
+		this.gravity = 0;
 	}
 	
 	public MyWorld(PrintStream output, double gravity) {
@@ -45,6 +46,7 @@ public class MyWorld {
 				s += ", " + ((Spring)e).getBendPosition();
 			} else if (e instanceof SpringAttachable) {
 				s += ", " + ((SpringAttachable)e).getPosition();
+				//s += ", " + ((SpringAttachable)e).getSpeed();
 			}
 
 		}
@@ -77,13 +79,13 @@ public class MyWorld {
 		return gravity;
 	}
 
-	public Ball findCollidingBall(Ball me) {
+	public SpringAttachable findCollidingBall(SpringAttachable me) {
 		for (PhysicsElement e: elements) {
-			if (e instanceof Ball) {
-				Ball b = (Ball)e;
+			if ((e instanceof Ball) || (e instanceof Block)) {
+				SpringAttachable b = (SpringAttachable)e;
 				if (b.getDescription().compareTo(me.getDescription()) != 0)
 					if (b.collide(me))
-						return b;
+				return b;
 			}
 		}
 

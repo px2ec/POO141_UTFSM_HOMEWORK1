@@ -43,4 +43,4 @@ test:
 	make clean
 	make
 	$(JVM) PhysicsLab 0.01 20 0.01 > resultados_e2.csv
-	python2 ../utils/plot2d.py -s resultados_e2.csv
+	python2 plot2d.py -s resultados_e2.csv

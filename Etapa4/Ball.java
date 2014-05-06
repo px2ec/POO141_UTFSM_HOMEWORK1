@@ -73,7 +73,8 @@ public class Ball extends PhysicsElement implements SpringAttachable {
 			in_collision = true;
 		} else {
 			speed_tPlusDelta = speed_t + 0.5 * (3 * a_t - a_tMinusDelta) * delta_t;
-			pos_tPlusDelta = pos_t + speed_t * delta_t + 0.5 * a_t * delta_t * delta_t;
+			// pos_tPlusDelta = pos_t + speed_t * delta_t + 0.5 * a_t * delta_t * delta_t;
+			pos_tPlusDelta = pos_t + speed_t * delta_t + (4 * a_t - a_tMinusDelta) * delta_t * delta_t / 6;
 
 			in_collision = false;
 		}
