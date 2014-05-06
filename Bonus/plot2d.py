@@ -25,7 +25,7 @@ def main(files, show=False):
         ball2 = [values[-1] for values in plot_values]
         
         plt.grid(True)
-        plt.title('Ball 1 (green) | Ball 2 (red)')
+        plt.title('Block (green) | Ball (red)')
         plt.plot(time, ball1, 'g.-')
         plt.plot(time, ball2, 'r.-')
         plt.ylabel('position [m]')

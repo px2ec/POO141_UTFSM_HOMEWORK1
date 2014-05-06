@@ -46,5 +46,5 @@ mrproper:
 test:
 	make clean
 	make
-	$(JVM) PhysicsLab 0.01 40 0.01 > resultados_e4.csv
+	$(JVM) PhysicsLab 0.01 15 0.01 > resultados_e4.csv
 	python2 plot2d.py -s resultados_e4.csv
